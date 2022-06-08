@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 
-	shopapi "github.com/libmonsoon-dev/shop/pkg/v1/api"
+	shopapi "github.com/libmonsoon-dev/shop/pkg/v1"
 )
 
 type Creator[T Entity] interface {

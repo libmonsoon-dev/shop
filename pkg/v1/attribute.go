@@ -1,4 +1,4 @@
-package shopapi
+package shopv1
 
 type Attribute struct {
 	ID          ID

@@ -10,7 +10,7 @@ import (
 
 	gomock "github.com/golang/mock/gomock"
 
-	shopapi "github.com/libmonsoon-dev/shop/pkg/v1/api"
+	shopv1 "github.com/libmonsoon-dev/shop/pkg/v1"
 )
 
 // MockItemRepository is a mock of ItemRepository interface.
@@ -37,7 +37,7 @@ func (m *MockItemRepository) EXPECT() *MockItemRepositoryMockRecorder {
 }
 
 // Create mocks base method.
-func (m *MockItemRepository) Create(arg0 context.Context, arg1 *shopapi.Item) error {
+func (m *MockItemRepository) Create(arg0 context.Context, arg1 *shopv1.Item) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Create", arg0, arg1)
 	ret0, _ := ret[0].(error)
@@ -48,43 +48,6 @@ func (m *MockItemRepository) Create(arg0 context.Context, arg1 *shopapi.Item) er
 func (mr *MockItemRepositoryMockRecorder) Create(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockItemRepository)(nil).Create), arg0, arg1)
-}
-
-// MockValueTypeRepository is a mock of ValueTypeRepository interface.
-type MockValueTypeRepository struct {
-	ctrl     *gomock.Controller
-	recorder *MockValueTypeRepositoryMockRecorder
-}
-
-// MockValueTypeRepositoryMockRecorder is the mock recorder for MockValueTypeRepository.
-type MockValueTypeRepositoryMockRecorder struct {
-	mock *MockValueTypeRepository
-}
-
-// NewMockValueTypeRepository creates a new mock instance.
-func NewMockValueTypeRepository(ctrl *gomock.Controller) *MockValueTypeRepository {
-	mock := &MockValueTypeRepository{ctrl: ctrl}
-	mock.recorder = &MockValueTypeRepositoryMockRecorder{mock}
-	return mock
-}
-
-// EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockValueTypeRepository) EXPECT() *MockValueTypeRepositoryMockRecorder {
-	return m.recorder
-}
-
-// Save mocks base method.
-func (m *MockValueTypeRepository) Save(arg0 context.Context, arg1 *shopapi.ValueType) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Save", arg0, arg1)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// Save indicates an expected call of Save.
-func (mr *MockValueTypeRepositoryMockRecorder) Save(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Save", reflect.TypeOf((*MockValueTypeRepository)(nil).Save), arg0, arg1)
 }
 
 // MockAttributeRepository is a mock of AttributeRepository interface.
@@ -111,7 +74,7 @@ func (m *MockAttributeRepository) EXPECT() *MockAttributeRepositoryMockRecorder 
 }
 
 // Create mocks base method.
-func (m *MockAttributeRepository) Create(arg0 context.Context, arg1 *shopapi.Attribute) error {
+func (m *MockAttributeRepository) Create(arg0 context.Context, arg1 *shopv1.Attribute) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Create", arg0, arg1)
 	ret0, _ := ret[0].(error)
@@ -122,4 +85,41 @@ func (m *MockAttributeRepository) Create(arg0 context.Context, arg1 *shopapi.Att
 func (mr *MockAttributeRepositoryMockRecorder) Create(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockAttributeRepository)(nil).Create), arg0, arg1)
+}
+
+// MockValueTypeRepository is a mock of ValueTypeRepository interface.
+type MockValueTypeRepository struct {
+	ctrl     *gomock.Controller
+	recorder *MockValueTypeRepositoryMockRecorder
+}
+
+// MockValueTypeRepositoryMockRecorder is the mock recorder for MockValueTypeRepository.
+type MockValueTypeRepositoryMockRecorder struct {
+	mock *MockValueTypeRepository
+}
+
+// NewMockValueTypeRepository creates a new mock instance.
+func NewMockValueTypeRepository(ctrl *gomock.Controller) *MockValueTypeRepository {
+	mock := &MockValueTypeRepository{ctrl: ctrl}
+	mock.recorder = &MockValueTypeRepositoryMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockValueTypeRepository) EXPECT() *MockValueTypeRepositoryMockRecorder {
+	return m.recorder
+}
+
+// Save mocks base method.
+func (m *MockValueTypeRepository) Save(arg0 context.Context, arg1 *shopv1.ValueType) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Save", arg0, arg1)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// Save indicates an expected call of Save.
+func (mr *MockValueTypeRepositoryMockRecorder) Save(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Save", reflect.TypeOf((*MockValueTypeRepository)(nil).Save), arg0, arg1)
 }

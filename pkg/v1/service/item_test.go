@@ -2,11 +2,11 @@ package service_test
 
 import (
 	"context"
+	"github.com/libmonsoon-dev/shop/pkg/v1"
 	"testing"
 
 	"github.com/golang/mock/gomock"
 
-	shopapi "github.com/libmonsoon-dev/shop/pkg/v1/api"
 	mock_repository "github.com/libmonsoon-dev/shop/pkg/v1/mock/repository"
 	mock_unitofwork "github.com/libmonsoon-dev/shop/pkg/v1/mock/unitofwork"
 	"github.com/libmonsoon-dev/shop/pkg/v1/repository"
@@ -18,7 +18,7 @@ func TestItemServiceCreate(t *testing.T) {
 	defaultGetItemRepository := func() func(ctrl *gomock.Controller) repository.ItemRepository {
 		return func(ctrl *gomock.Controller) repository.ItemRepository {
 			mock := mock_repository.NewMockItemRepository(ctrl)
-			mock.EXPECT().Create(gomock.Eq(context.Background()), gomock.Any()).DoAndReturn(func(ctx context.Context, item *shopapi.Item) error {
+			mock.EXPECT().Create(gomock.Eq(context.Background()), gomock.Any()).DoAndReturn(func(ctx context.Context, item *shopv1.Item) error {
 				item.ID = 1
 				return nil
 			})
@@ -28,12 +28,12 @@ func TestItemServiceCreate(t *testing.T) {
 	}
 
 	defaultGetAttributeRepository := func() func(ctrl *gomock.Controller) repository.AttributeRepository {
-		var lastID shopapi.ID
+		var lastID shopv1.ID
 
 		return func(ctrl *gomock.Controller) repository.AttributeRepository {
 			mock := mock_repository.NewMockAttributeRepository(ctrl)
 			mock.EXPECT().Create(gomock.Eq(context.Background()), gomock.Any()).DoAndReturn(
-				func(ctx context.Context, valueType *shopapi.Attribute) error {
+				func(ctx context.Context, valueType *shopv1.Attribute) error {
 					lastID++
 					valueType.ID = lastID
 					return nil
@@ -45,12 +45,12 @@ func TestItemServiceCreate(t *testing.T) {
 	}
 
 	defaultGetValueTypeRepository := func() func(ctrl *gomock.Controller) repository.ValueTypeRepository {
-		var lastID shopapi.ID
+		var lastID shopv1.ID
 
 		return func(ctrl *gomock.Controller) repository.ValueTypeRepository {
 			mock := mock_repository.NewMockValueTypeRepository(ctrl)
 			mock.EXPECT().Save(gomock.Eq(context.Background()), gomock.Any()).DoAndReturn(
-				func(ctx context.Context, valueType *shopapi.ValueType) error {
+				func(ctx context.Context, valueType *shopv1.ValueType) error {
 					lastID++
 					valueType.ID = lastID
 					return nil
@@ -95,24 +95,24 @@ func TestItemServiceCreate(t *testing.T) {
 			repository.ValueTypeRepository,
 		) unitofwork.ItemCreator
 		getUnitOfWorkFactory func(*gomock.Controller, unitofwork.ItemCreator) unitofwork.ItemCreatorFactory
-		ctx                  context.Context
-		item                 shopapi.Item
-		wantErr              bool
+		ctx     context.Context
+		item    shopv1.Item
+		wantErr bool
 	}{
 		{
 			name: "Regular create",
 			ctx:  context.Background(),
-			item: shopapi.Item{
+			item: shopv1.Item{
 				Name: "Ball",
-				Attributes: []shopapi.Attribute{
+				Attributes: []shopv1.Attribute{
 					{
-						ValueType: &shopapi.ValueType{
+						ValueType: &shopv1.ValueType{
 							Name: "color",
 						},
 						Value: "red",
 					},
 					{
-						ValueType: &shopapi.ValueType{
+						ValueType: &shopv1.ValueType{
 							Name: "sport",
 						},
 						Value: "football",

@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	shopapi "github.com/libmonsoon-dev/shop/pkg/v1/api"
+	shopv1 "github.com/libmonsoon-dev/shop/pkg/v1"
 	"github.com/libmonsoon-dev/shop/pkg/v1/unitofwork"
 )
 
@@ -18,7 +18,7 @@ type ItemService struct {
 	unitOfWorkFactory unitofwork.ItemCreatorFactory
 }
 
-func (s *ItemService) Create(ctx context.Context, item *shopapi.Item) (err error) {
+func (s *ItemService) Create(ctx context.Context, item *shopv1.Item) (err error) {
 	unitOfWork, err := s.unitOfWorkFactory.CreateContext(ctx)
 	if err != nil {
 		return fmt.Errorf("create unit of work: %w", err)

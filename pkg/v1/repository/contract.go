@@ -5,20 +5,20 @@ package repository
 import (
 	"context"
 
-	shopapi "github.com/libmonsoon-dev/shop/pkg/v1/api"
+	shopv1 "github.com/libmonsoon-dev/shop/pkg/v1"
 )
 
 type ItemRepository interface {
 	// Creator[shopapi.Item]
-	Create(context.Context, *shopapi.Item) error
+	Create(context.Context, *shopv1.Item) error
 }
 
 type AttributeRepository interface {
 	// Creator[shopapi.Attribute]
-	Create(context.Context, *shopapi.Attribute) error
+	Create(context.Context, *shopv1.Attribute) error
 }
 
 type ValueTypeRepository interface {
 	// Saver[shopapi.ValueType]
-	Save(context.Context, *shopapi.ValueType) error
+	Save(context.Context, *shopv1.ValueType) error
 }
