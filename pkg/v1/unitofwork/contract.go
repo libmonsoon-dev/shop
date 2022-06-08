@@ -14,7 +14,7 @@ type Interface interface {
 
 type ItemCreatorFactory interface {
 	CreateContext(ctx context.Context) (ItemCreator, error)
-	//TODO: factory.ContextInterface[ItemCreator]
+	// TODO: factory.ContextInterface[ItemCreator]
 }
 
 type ItemCreator interface {

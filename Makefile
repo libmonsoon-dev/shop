@@ -11,12 +11,18 @@ check-hook: #TODO:
 	 (echo "#!/bin/sh\nmake pre-commit" > .git/hooks/pre-commit \
 	 && chmod +x .git/hooks/pre-commit)
 
-lint-fix: goimports
+lint-fix: goimports gofumpt
 
 goimports:
 	@for f in $(GO_FILES) ; do \
 		echo goimports $$f; \
 		goimports -w -force-rewrite -local github.com/libmonsoon-dev $$f ; \
+	done
+
+gofumpt:
+	@for f in $(GO_FILES) ; do \
+		echo gofumpt $$f; \
+		gofumpt -w $$f ; \
 	done
 
 build:

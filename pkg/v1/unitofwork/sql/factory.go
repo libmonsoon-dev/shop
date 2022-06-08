@@ -22,7 +22,6 @@ var _ factory.ContextInterface[*UnitOfWork] = (*Factory)(nil)
 
 func (f *Factory) CreateContext(ctx context.Context) (*UnitOfWork, error) {
 	tx, err := f.db.BeginTx(ctx, f.opts)
-
 	if err != nil {
 		return nil, fmt.Errorf("begin sql transaction: %w", err)
 	}

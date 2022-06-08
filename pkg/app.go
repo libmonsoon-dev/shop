@@ -13,6 +13,6 @@ func (p *Property[T]) Get() T {
 	return p.val
 }
 
-//var _ json.Marshaler = Property[any] //TODO
-//var _ json.Unmarshaler = Property[any] //TODO
-//var _ driver.Valuer = Property[any] //TODO
+// var _ json.Marshaler = Property[any] //TODO
+// var _ json.Unmarshaler = Property[any] //TODO
+// var _ driver.Valuer = Property[any] //TODO
