@@ -32,4 +32,4 @@ test:
 	$(GO_BIN) test -v $(PKG_PATTERN)
 
 generate:
-	$(GO_BIN) generate -x $(PKG_PATTERN)
+	$(GO_BIN) generate -v -x $(PKG_PATTERN)
