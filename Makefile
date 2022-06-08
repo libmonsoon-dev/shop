@@ -4,9 +4,9 @@ GO_FILES=$(shell GO_BIN=$(GO_BIN) PKG_PATTERN=$(PKG_PATTERN) ./get-go-file-names
 
 pre-commit: check-hook lint-fix build test
 
-watcher-hook: build test
+watcher-hook: lint-fix build test
 
-check-hook: #TODO:
+check-hook:
 	@ls .git/hooks/pre-commit 2> /dev/null || \
 	 (echo "#!/bin/sh\nmake pre-commit" > .git/hooks/pre-commit \
 	 && chmod +x .git/hooks/pre-commit)
