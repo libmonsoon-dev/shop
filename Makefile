@@ -2,7 +2,7 @@ GO_BIN=go
 PKG_PATTERN=./...
 GO_FILES=$(shell GO_BIN=$(GO_BIN) PKG_PATTERN=$(PKG_PATTERN) ./get-go-file-names.sh)
 
-pre-commit: check-hook lint-fix build test
+pre-commit: check-hook generate lint-fix build test
 
 watcher-hook: lint-fix build test
 
@@ -30,3 +30,6 @@ build:
 
 test:
 	$(GO_BIN) test -v $(PKG_PATTERN)
+
+generate:
+	$(GO_BIN) generate -x $(PKG_PATTERN)
